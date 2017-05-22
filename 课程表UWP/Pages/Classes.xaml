@@ -1,0 +1,755 @@
+﻿<Page x:Class="课程表UWP.Pages.Classes" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:课程表UWP.Pages" xmlns:model="using:课程表UWP.data" xmlns:JiuYouAdUniversal="using:JiuYouAdUniversal" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+
+
+    <Page.Resources>
+        <!--有课模板-->
+        <DataTemplate x:Key="DataTemplate1" x:Name="有课模板">
+            <Grid Height="Auto" Width="Auto" Margin="-10,0,25,0" Background="Azure" Tapped="edit_Tapped" Tag="{Binding class_index_property}" HorizontalAlignment="Left" Padding="0,0,0,11">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="320" />
+
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Canvas.ZIndex="10" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,4,0,14" Height="50" Width="48">
+                    <TextBlock Text="{Binding class_startTime}" Name="startTime" Padding="0,0,0,5" HorizontalAlignment="Left" Foreground="#FF16C0AB" FontWeight="Bold">
+8:00
+                    </TextBlock>
+
+                    <TextBlock Text="{Binding class_endTime}" Name="endTime" Padding="0,0,0,0" HorizontalAlignment="Left" Foreground="#FF16C0AB" FontWeight="Bold">
+8:45
+                    </TextBlock>
+                </StackPanel>
+
+
+
+
+
+                <RelativePanel Grid.Row="0" Grid.Column="1" BorderThickness="3" BorderBrush="#FFA4D1ED" Margin="0,0,-35,11.333">
+
+
+                    <TextBlock Padding="20,0,0,0" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="{Binding class_name_property}" Foreground="#FF239CC0">
+                                            高等数学
+                    </TextBlock>
+
+
+                    <StackPanel Orientation="Vertical" RelativePanel.AlignRightWithPanel="True" Padding="0,3,8,0">
+                        <StackPanel HorizontalAlignment="Right">
+                            <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+
+                                <TextBlock FontSize="10" Text="{Binding class_room_property}" Foreground="#FF239CC0">0000</TextBlock>
+                            </StackPanel>
+                            <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+
+                                <TextBlock FontSize="10" Text="{Binding class_teacher_property}" Foreground="#FF239CC0">1111</TextBlock>
+                            </StackPanel>
+
+                            <!--<StackPanel Padding="2,2,0,0" Orientation="Horizontal" >
+                                
+                                <TextBlock FontSize="10" Text="{Binding class_tag_property}" Foreground="#FF239CC0">3333</TextBlock>
+                            </StackPanel>-->
+
+                            <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+
+                                <TextBlock FontSize="10" Text="{Binding class_duration_property}" Foreground="#FF239CC0">3333</TextBlock>
+                                <TextBlock FontSize="10" Text="{Binding class_weeklimit_property}" Padding="8,0,0,0" Foreground="#FF239CC0">3333</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </RelativePanel>
+
+
+
+            </Grid>
+        </DataTemplate>
+
+
+        <Style x:Name="MyListBoxItemStyle" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--无课模板-->
+        <DataTemplate x:Key="DataTemplate2" x:Name="无课模板">
+            <Grid Height="Auto" Width="Auto" Margin="-10,0,25,0" Background="Azure" Tapped="edit_Tapped" Tag="{Binding class_index_property}" HorizontalAlignment="Left" Padding="0,0,0,11">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="71"></ColumnDefinition>
+                    <ColumnDefinition Width="219" />
+
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Canvas.ZIndex="10" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,4,0,14" Height="50" Width="48">
+                    <TextBlock Text="{Binding class_startTime}" Name="startTime" Padding="0,0,0,5" HorizontalAlignment="Left" Foreground="#FF16C0AB" FontWeight="Bold">
+8:00
+                    </TextBlock>
+
+                    <TextBlock Text="{Binding class_endTime}" Name="endTime" Padding="0,0,0,0" HorizontalAlignment="Left" Foreground="#FF16C0AB" FontWeight="Bold">
+8:45
+                    </TextBlock>
+                </StackPanel>
+
+
+
+
+
+                <RelativePanel Grid.Row="0" Grid.Column="1" BorderThickness="3" BorderBrush="#FFA4D1ED" Margin="0,0,-35,11.333">
+
+
+                    <TextBlock Padding="20,0,0,0" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Foreground="#FF239CC0">
+
+                    </TextBlock>
+
+
+                    <StackPanel Orientation="Vertical" RelativePanel.AlignRightWithPanel="True" Padding="0,3,8,0">
+                        <StackPanel HorizontalAlignment="Right">
+                            <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+
+                                <TextBlock FontSize="10" Foreground="#FF239CC0"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+
+                                <TextBlock FontSize="10" Foreground="#FF239CC0"></TextBlock>
+                            </StackPanel>
+
+                            <!--<StackPanel Padding="2,2,0,0" Orientation="Horizontal" >
+                                
+                                <TextBlock FontSize="10" Text="{Binding class_tag_property}" Foreground="#FF239CC0">3333</TextBlock>
+                            </StackPanel>-->
+
+                            <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+
+                                <TextBlock FontSize="10" Foreground="#FF239CC0"></TextBlock>
+                                <TextBlock FontSize="10" Padding="8,0,0,0" Foreground="#FF239CC0"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </RelativePanel>
+
+
+
+            </Grid>
+        </DataTemplate>
+        <!--单周模板-->
+        <DataTemplate x:Key="singleweek">
+            <Grid Height="Auto" Width="Auto" Margin="5" x:Name="container1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28"></RowDefinition>
+                    <RowDefinition Height="72"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <RelativePanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#33FFFFFF" Margin="0,0,-20,0">
+
+                    <TextBlock Text="{Binding class_startTime}" Name="startTime" Padding="45,0,5,0" RelativePanel.AlignLeftWithPanel="True" Margin="0,3,-0.667,-27">
+
+                    </TextBlock>
+                    <TextBlock Margin="86,2,-94,-33">---</TextBlock>
+                    <TextBlock Text="{Binding class_endTime}" Name="endTime" Padding="85,0,0,0" RelativePanel.AlignLeftWith="startTime" Margin="27,3,-74,-28">
+
+                    </TextBlock>
+
+                    <Button Name="delete" Tapped="delete_Tapped" Style="{StaticResource TextBlockButtonStyle}" RelativePanel.AlignRightWithPanel="True" Tag="{Binding class_index_property}" Margin="-45,0,0,0" Width="81">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" />
+                    </Button>
+
+                    <Button Name="edit" Tapped="edit_Tapped" Style="{StaticResource TextBlockButtonStyle}" RelativePanel.AlignRightWith="delete" Tag="{Binding class_index_property}">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />
+                    </Button>
+
+                </RelativePanel>
+
+                <Grid Grid.Row="1" Grid.Column="0" Background="#33FFFFFF">
+                    <TextBlock Padding="40,0,0,10" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Text="{Binding class_name_property}">
+                    </TextBlock>
+
+
+                    <Image Source="ms-appx:///images/sw.png" Height="40" Width="40" VerticalAlignment="Bottom" HorizontalAlignment="Left"></Image>
+
+
+
+                </Grid>
+
+
+                <StackPanel Orientation="Vertical" Grid.Column="1" Background="#33FFFFFF" Grid.Row="1" Padding="5,0,0,0" Margin="0,0,-20,0">
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">教室:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_room_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">教师:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_teacher_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">学分:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_score_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel >
+
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">类型:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_tag_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <!--双周模板-->
+        <DataTemplate x:Key="doubleweek">
+            <Grid Height="Auto" Width="Auto" Margin="5" x:Name="container1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28"></RowDefinition>
+                    <RowDefinition Height="72"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <RelativePanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#33FFFFFF" Margin="0,0,-20,0">
+
+                    <TextBlock Text="{Binding class_startTime}" Name="startTime" Padding="45,0,5,0" RelativePanel.AlignLeftWithPanel="True" Margin="0,3,-0.667,-27">
+
+                    </TextBlock>
+                    <TextBlock Margin="86,2,-94,-33">---</TextBlock>
+                    <TextBlock Text="{Binding class_endTime}" Name="endTime" Padding="85,0,0,0" RelativePanel.AlignLeftWith="startTime" Margin="27,3,-74,-28">
+
+                    </TextBlock>
+
+                    <Button Name="delete" Tapped="delete_Tapped" Style="{StaticResource TextBlockButtonStyle}" RelativePanel.AlignRightWithPanel="True" Tag="{Binding class_index_property}" Margin="-45,0,0,0" Width="81">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" />
+                    </Button>
+
+                    <Button Name="edit" Tapped="edit_Tapped" Style="{StaticResource TextBlockButtonStyle}" RelativePanel.AlignRightWith="delete" Tag="{Binding class_index_property}">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />
+                    </Button>
+
+                </RelativePanel>
+
+                <Grid Grid.Row="1" Grid.Column="0" Background="#33FFFFFF">
+                    <TextBlock Padding="40,0,0,10" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" Text="{Binding class_name_property}">
+                    </TextBlock>
+
+
+                    <Image Source="ms-appx:///images/dw.png" Height="40" Width="40" VerticalAlignment="Bottom" HorizontalAlignment="Left"></Image>
+
+
+
+                </Grid>
+
+
+                <StackPanel Orientation="Vertical" Grid.Column="1" Background="#33FFFFFF" Grid.Row="1" Padding="5,0,0,0" Margin="0,0,-20,0">
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">教室:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_room_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">教师:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_teacher_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">学分:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_score_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel >
+
+                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF182DC7">类型:</TextBlock>
+                        <TextBlock FontSize="10" Text="{Binding class_tag_property}" Foreground="#FF182DC7"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <model:ListViewTemplateSelector x:Key="dii" x:Name="selector" DataTemplate01="{StaticResource DataTemplate1}" DataTemplate03="{StaticResource singleweek}" DataTemplate04="{StaticResource doubleweek}" DataTemplate02="{StaticResource DataTemplate2}">
+
+        </model:ListViewTemplateSelector>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <ScrollViewer Name="sv">
+            <StackPanel x:Name="grid" Background="Azure" Orientation="Vertical">
+
+                <Hub Height="Auto" MinHeight="800" Width="Auto" Name="MainHub" IsEnabled="True" ScrollViewer.HorizontalScrollBarVisibility="Hidden" AutomationProperties.Level="-1" AutomationProperties.PositionInSet="-1" AutomationProperties.SizeOfSet="-1">
+
+                    <HubSection Name="day1">
+                        <HubSection.Header>
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border1" Height="72" Width="72" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border1" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="周一" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="MON." Foreground="#FF0E95E8" FontSize="16" Padding="18,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+
+                                </RelativePanel>
+                            </Grid>
+
+
+
+
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemTemplateSelector="{StaticResource dii}" ItemContainerStyle="{StaticResource MyListBoxItemStyle}" ItemsSource="{Binding}">
+                                    <ListViewItem>
+
+                                        <Grid Height="Auto" Width="Auto" Margin="-10,0,25,0" HorizontalAlignment="Left" Padding="0,10,0,10">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                                <ColumnDefinition Width="320" />
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,4,0,14.333" Height="60" Width="38">
+                                                <TextBlock Text="{Binding class_startTime}" Name="startTime" Padding="5" HorizontalAlignment="Left" Foreground="#FF16C0AB" FontWeight="Bold">
+8:00
+                                                </TextBlock>
+
+                                                <TextBlock Text="{Binding class_endTime}" Name="endTime" Padding="5" HorizontalAlignment="Left" Foreground="#FF16C0AB" FontWeight="Bold">
+8:45
+                                                </TextBlock>
+                                            </StackPanel>
+
+
+
+
+
+                                            <RelativePanel Grid.Row="0" Grid.Column="1" BorderThickness="3" BorderBrush="#FFA4D1ED" Margin="0,0,-35,11.333">
+
+
+                                                <TextBlock Padding="20,0,0,0" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="{Binding class_name_property}" Foreground="#FF239CC0">
+                                            高等数学
+                                                </TextBlock>
+
+
+                                                <StackPanel Orientation="Vertical" RelativePanel.AlignRightWithPanel="True" Padding="0,5,8,5">
+                                                    <StackPanel HorizontalAlignment="Right">
+                                                        <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                                                            <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">教室:</TextBlock>
+                                                            <TextBlock FontSize="10" Text="{Binding class_room_property}" Foreground="#FF239CC0">0000</TextBlock>
+                                                        </StackPanel>
+                                                        <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                                                            <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">教师:</TextBlock>
+                                                            <TextBlock FontSize="10" Text="{Binding class_teacher_property}" Foreground="#FF239CC0">1111</TextBlock>
+                                                        </StackPanel>
+
+                                                        <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                                                            <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">学分:</TextBlock>
+                                                            <TextBlock FontSize="10" Text="{Binding class_score_property}" Foreground="#FF239CC0">2222</TextBlock>
+                                                        </StackPanel >
+
+                                                        <StackPanel Padding="2,2,0,0" Orientation="Horizontal">
+                                                            <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">类型:</TextBlock>
+                                                            <TextBlock FontSize="10" Text="{Binding class_tag_property}" Foreground="#FF182DC7">3333</TextBlock>
+                                                        </StackPanel>
+                                                    </StackPanel>
+
+                                                </StackPanel>
+
+                                            </RelativePanel>
+
+
+
+                                        </Grid>
+
+                                    </ListViewItem>
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+                    </HubSection>
+
+                    <HubSection Width="Auto" Name="day2">
+                        <HubSection.Header>
+
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border2" Height="65" Width="65" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border2" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="周二" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="TUE." Foreground="#FF0E95E8" FontSize="16" Padding="18,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+
+
+
+
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemTemplateSelector="{StaticResource dii}" ItemContainerStyle="{StaticResource MyListBoxItemStyle}" ItemsSource="{Binding}">
+                                    <ListViewItem>
+
+                                        <Grid Height="Auto" Width="Auto" Margin="0,0,25,0" HorizontalAlignment="Left" Padding="0,0,0,8">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                                <ColumnDefinition Width="240" />
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center" Margin="0,4,0,5" Height="60">
+                                                <TextBlock Text="{Binding class_startTime}" Name="startTime" Padding="5" Foreground="#FF16C0AB" FontWeight="Bold">
+8:00
+                                                </TextBlock>
+
+                                                <TextBlock Text="{Binding class_endTime}" Name="endTime" Padding="5" Foreground="#FF16C0AB" FontWeight="Bold">
+8:45
+                                                </TextBlock>
+                                            </StackPanel>
+
+
+
+
+
+                                            <RelativePanel Grid.Row="0" Grid.Column="1" BorderThickness="3" BorderBrush="#FFA4D1ED" Margin="0,0,-35,2">
+
+
+                                                <TextBlock Padding="20,0,0,0" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="{Binding class_name_property}" Foreground="#FF239CC0">
+                                            高等数学
+                                                </TextBlock>
+
+
+                                                <StackPanel Orientation="Vertical" RelativePanel.AlignRightWithPanel="True" Padding="0,0,8,0">
+                                                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">教室:</TextBlock>
+                                                        <TextBlock FontSize="10" Text="{Binding class_room_property}" Foreground="#FF239CC0"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">教师:</TextBlock>
+                                                        <TextBlock FontSize="10" Text="{Binding class_teacher_property}" Foreground="#FF239CC0"></TextBlock>
+                                                    </StackPanel>
+
+                                                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">学分:</TextBlock>
+                                                        <TextBlock FontSize="10" Text="{Binding class_score_property}" Foreground="#FF239CC0"></TextBlock>
+                                                    </StackPanel >
+
+                                                    <StackPanel Padding="2,2,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <TextBlock FontSize="10" Padding="0,0,6,0" Foreground="#FF239CC0">类型:</TextBlock>
+                                                        <TextBlock FontSize="10" Text="{Binding class_tag_property}" Foreground="#FF182DC7"></TextBlock>
+                                                    </StackPanel>
+                                                </StackPanel>
+
+                                            </RelativePanel>
+
+
+
+                                        </Grid>
+
+                                    </ListViewItem>
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+
+                    </HubSection>
+
+                    <HubSection Width="Auto" Name="day3">
+                        <HubSection.Header>
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border3" Height="65" Width="65" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border3" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="周三" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="WED." Foreground="#FF0E95E8" FontSize="16" Padding="18,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+
+
+
+
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource MyListBoxItemStyle}" ItemsSource="{Binding}" ItemTemplateSelector="{StaticResource dii}">
+
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+
+                    </HubSection>
+
+                    <HubSection Width="Auto" Name="day4">
+                        <HubSection.Header>
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border4" Height="65" Width="65" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border4" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="周四" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="THU." Foreground="#FF0E95E8" FontSize="16" Padding="18,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+
+
+
+
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource MyListBoxItemStyle}" ItemsSource="{Binding}" ItemTemplateSelector="{StaticResource dii}">
+
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+
+                    </HubSection>
+
+                    <HubSection Width="Auto" Name="day5">
+                        <HubSection.Header>
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border5" Height="65" Width="65" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border5" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="周五" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="FRI." Foreground="#FF0E95E8" FontSize="16" Padding="18,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+
+
+
+
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource MyListBoxItemStyle}" ItemsSource="{Binding}" ItemTemplateSelector="{StaticResource dii}" SelectionMode="None">
+
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+
+                    </HubSection>
+
+                    <HubSection Width="Auto" Name="day6">
+                        <HubSection.Header>
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border6" Height="65" Width="65" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border6" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="周六" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="SAT." Foreground="#FF0E95E8" FontSize="16" Padding="18,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+
+
+
+
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource MyListBoxItemStyle}" ItemsSource="{Binding}" ItemTemplateSelector="{StaticResource dii}" SelectionMode="None">
+
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+
+                    </HubSection>
+
+                    <HubSection Width="Auto" Name="day7">
+                        <HubSection.Header>
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border7" Height="65" Width="65" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border7" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="周日" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="SUN." Foreground="#FF0E95E8" FontSize="16" Padding="18,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+
+
+
+
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource MyListBoxItemStyle}" ItemsSource="{Binding}" ItemTemplateSelector="{StaticResource dii}" SelectionMode="None">
+
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+
+                    </HubSection>
+
+
+                    <HubSection Width="Auto" Name="ad">
+                        <HubSection.Header>
+
+                            <Grid Margin="-15,-25,-30,0" Width="450" Height="80">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FF0494EB"></Grid>
+                                <RelativePanel Grid.RowSpan="2" Canvas.ZIndex="20" Margin="10,6,0,0">
+
+                                    <Ellipse Name="border8" Height="65" Width="65" Stroke="#FF6AC1F6" StrokeThickness="5" Fill="#FFF4F6FA">
+
+
+                                    </Ellipse>
+
+                                    <StackPanel RelativePanel.AlignVerticalCenterWith="border8" Width="65" Orientation="Vertical">
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Padding="18,0,0,2" Text="推广" Foreground="#FF0E95E8" FontSize="16">
+                                        </TextBlock>
+
+                                        <TextBlock Text="AD" Foreground="#FF0E95E8" FontSize="16" Padding="23,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Perpetua" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+                        </HubSection.Header>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="150"></RowDefinition>
+                                    <RowDefinition Height="60"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <JiuYouAdUniversal:AdControl ApplicationKey="08271c7a6d082bc34955c9db6021809e" Width="300" VerticalAlignment="Center" Height="300" AdType="Interstitial" />
+
+                                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                    <!--开心打地鼠-->
+                                    <HyperlinkButton NavigateUri="https://www.microsoft.com/store/apps/9nblggh5tqzp">
+                                        <Image Source="ms-appx:///images/mouse.png" Height="140" Width="140" RenderTransformOrigin="0.5,0.5">
+
+                                        </Image>
+                                    </HyperlinkButton>
+                                    <!--摇滚英雄-->
+                                    <HyperlinkButton Margin="10,0,0,0" NavigateUri="https://www.microsoft.com/store/apps/9nblggh4th5m">
+                                        <Image Source="ms-appx:///images\70x70.png" Height="140" Width="140"></Image>
+                                    </HyperlinkButton>
+
+                                </StackPanel>
+
+
+
+
+                            </Grid>
+                        </DataTemplate>
+
+                    </HubSection>
+
+                </Hub>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+    </Grid>
+</Page>

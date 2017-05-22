@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="课程表UWP.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:课程表UWP.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#FFA1CAEB">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Background="#FF233232">
+
+            <RelativePanel>
+                <Ellipse Stroke="#FF1A15EA" MinHeight="300" MinWidth="300" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" >
+                    <Ellipse.Fill>
+                        <ImageBrush Stretch="Fill" ImageSource="ms-appx:///images/bg1.jpg"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <HyperlinkButton RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" NavigateUri="https://www.microsoft.com/store/apps/9NBLGGH4V0P5">
+                    <StackPanel Orientation="Vertical">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE19F;" Foreground="White" />
+                        <TextBlock Foreground="White">给好评(+1)</TextBlock>
+                    </StackPanel>
+                </HyperlinkButton>
+            </RelativePanel>
+
+          
+
+        </StackPanel>
+
+        <RelativePanel Grid.Row="1" Background="Azure">
+            <StackPanel Orientation="Vertical" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                <TextBlock Text="初创         枫叶"  FontSize="20" Margin="10,0,10,0" Foreground="#FF0940FC" FontFamily="Microsoft YaHei" FontWeight="ExtraLight"  />
+                <TextBlock Text="主创         ssz666"  FontSize="20" Margin="10,10,10,0" Foreground="#FF2517FF" FontFamily="Microsoft YaHei" FontWeight="ExtraLight"  />
+                <TextBlock Text="界面设计     林枫 和 ssz666"  FontSize="20" Margin="10,10,10,0" Foreground="#FF2115E7" FontFamily="Microsoft YaHei" FontWeight="ExtraLight"  />
+                <TextBlock Text="意见反馈     songshizhao@live.com" FontSize="20" Margin="10,10,10,0" Foreground="#FF2519E4" FontFamily="Microsoft YaHei" FontWeight="ExtraLight"  />
+
+                <TextBlock  FontSize="20" Margin="10,10,10,0" Foreground="#FF3126ED" FontFamily="Microsoft YaHei" FontWeight="ExtraLight"  >
+                <Run Text="版本日期     2017年3月"/>
+                <Run Text="30"/>
+                <Run Text="日"/>
+                </TextBlock>
+                <TextBlock  FontSize="20" Margin="10,10,10,0" Foreground="#FF3226F0" FontFamily="Microsoft YaHei" FontWeight="ExtraLight"  >
+                <Run Text="版本号         Verson1.4"/>
+                <Run Text="x"/>
+                </TextBlock>
+
+                <HyperlinkButton Margin="10,10,10,0" NavigateUri="http://www.songshizhao.com/blog/blogList.aspx" FontSize="18" Foreground="#FF394FED">作者博客：http://www.songshizhao.com/blog/blogList.aspx</HyperlinkButton>
+            </StackPanel>
+        </RelativePanel>
+      
+
+    </Grid>
+</Page>

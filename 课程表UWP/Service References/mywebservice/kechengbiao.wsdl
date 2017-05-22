@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://tempuri.org/AbstractTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="uploadclass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="classtitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="classfile" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uploadclassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uploadclassResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadClassById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadClassByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadClassByIdResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadClassByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="classtitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadClassByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadClassByNameResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="loadallclass">
+        <s:complexType />
+      </s:element>
+      <s:element name="loadallclassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loadallclassResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectMN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="m" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="n" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectMNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectMNResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchclass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="classtitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchclassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchclassResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLenById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLenByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentLenByIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLenByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="classtitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLenByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentLenByNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+      <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="uploadclassSoapIn">
+    <wsdl:part name="parameters" element="tns:uploadclass" />
+  </wsdl:message>
+  <wsdl:message name="uploadclassSoapOut">
+    <wsdl:part name="parameters" element="tns:uploadclassResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadClassById" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadClassByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadClassByName" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadClassByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="loadallclassSoapIn">
+    <wsdl:part name="parameters" element="tns:loadallclass" />
+  </wsdl:message>
+  <wsdl:message name="loadallclassSoapOut">
+    <wsdl:part name="parameters" element="tns:loadallclassResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectMNSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectMN" />
+  </wsdl:message>
+  <wsdl:message name="SelectMNSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectMNResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchclassSoapIn">
+    <wsdl:part name="parameters" element="tns:searchclass" />
+  </wsdl:message>
+  <wsdl:message name="searchclassSoapOut">
+    <wsdl:part name="parameters" element="tns:searchclassResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentLenById" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentLenByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentLenByName" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentLenByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="uploadclassHttpGetIn">
+    <wsdl:part name="classtitle" type="s:string" />
+    <wsdl:part name="classfile" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="uploadclassHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByIdHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByNameHttpGetIn">
+    <wsdl:part name="classtitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="loadallclassHttpGetIn" />
+  <wsdl:message name="loadallclassHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="SelectMNHttpGetIn">
+    <wsdl:part name="m" type="s:string" />
+    <wsdl:part name="n" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SelectMNHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="searchclassHttpGetIn">
+    <wsdl:part name="classtitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchclassHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByIdHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByNameHttpGetIn">
+    <wsdl:part name="classtitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="uploadclassHttpPostIn">
+    <wsdl:part name="classtitle" type="s:string" />
+    <wsdl:part name="classfile" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="uploadclassHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByIdHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByNameHttpPostIn">
+    <wsdl:part name="classtitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DownloadClassByNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="loadallclassHttpPostIn" />
+  <wsdl:message name="loadallclassHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="SelectMNHttpPostIn">
+    <wsdl:part name="m" type="s:string" />
+    <wsdl:part name="n" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SelectMNHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="searchclassHttpPostIn">
+    <wsdl:part name="classtitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchclassHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByIdHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByNameHttpPostIn">
+    <wsdl:part name="classtitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLenByNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="kechengbiaoSoap">
+    <wsdl:operation name="uploadclass">
+      <wsdl:input message="tns:uploadclassSoapIn" />
+      <wsdl:output message="tns:uploadclassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassById">
+      <wsdl:input message="tns:DownloadClassByIdSoapIn" />
+      <wsdl:output message="tns:DownloadClassByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassByName">
+      <wsdl:input message="tns:DownloadClassByNameSoapIn" />
+      <wsdl:output message="tns:DownloadClassByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="loadallclass">
+      <wsdl:input message="tns:loadallclassSoapIn" />
+      <wsdl:output message="tns:loadallclassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMN">
+      <wsdl:input message="tns:SelectMNSoapIn" />
+      <wsdl:output message="tns:SelectMNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchclass">
+      <wsdl:input message="tns:searchclassSoapIn" />
+      <wsdl:output message="tns:searchclassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenById">
+      <wsdl:input message="tns:GetDocumentLenByIdSoapIn" />
+      <wsdl:output message="tns:GetDocumentLenByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenByName">
+      <wsdl:input message="tns:GetDocumentLenByNameSoapIn" />
+      <wsdl:output message="tns:GetDocumentLenByNameSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="kechengbiaoHttpGet">
+    <wsdl:operation name="uploadclass">
+      <wsdl:input message="tns:uploadclassHttpGetIn" />
+      <wsdl:output message="tns:uploadclassHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassById">
+      <wsdl:input message="tns:DownloadClassByIdHttpGetIn" />
+      <wsdl:output message="tns:DownloadClassByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassByName">
+      <wsdl:input message="tns:DownloadClassByNameHttpGetIn" />
+      <wsdl:output message="tns:DownloadClassByNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="loadallclass">
+      <wsdl:input message="tns:loadallclassHttpGetIn" />
+      <wsdl:output message="tns:loadallclassHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMN">
+      <wsdl:input message="tns:SelectMNHttpGetIn" />
+      <wsdl:output message="tns:SelectMNHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchclass">
+      <wsdl:input message="tns:searchclassHttpGetIn" />
+      <wsdl:output message="tns:searchclassHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenById">
+      <wsdl:input message="tns:GetDocumentLenByIdHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentLenByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenByName">
+      <wsdl:input message="tns:GetDocumentLenByNameHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentLenByNameHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="kechengbiaoHttpPost">
+    <wsdl:operation name="uploadclass">
+      <wsdl:input message="tns:uploadclassHttpPostIn" />
+      <wsdl:output message="tns:uploadclassHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassById">
+      <wsdl:input message="tns:DownloadClassByIdHttpPostIn" />
+      <wsdl:output message="tns:DownloadClassByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassByName">
+      <wsdl:input message="tns:DownloadClassByNameHttpPostIn" />
+      <wsdl:output message="tns:DownloadClassByNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="loadallclass">
+      <wsdl:input message="tns:loadallclassHttpPostIn" />
+      <wsdl:output message="tns:loadallclassHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMN">
+      <wsdl:input message="tns:SelectMNHttpPostIn" />
+      <wsdl:output message="tns:SelectMNHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchclass">
+      <wsdl:input message="tns:searchclassHttpPostIn" />
+      <wsdl:output message="tns:searchclassHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenById">
+      <wsdl:input message="tns:GetDocumentLenByIdHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentLenByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenByName">
+      <wsdl:input message="tns:GetDocumentLenByNameHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentLenByNameHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="kechengbiaoSoap" type="tns:kechengbiaoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="uploadclass">
+      <soap:operation soapAction="http://tempuri.org/uploadclass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassById">
+      <soap:operation soapAction="http://tempuri.org/DownloadClassById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassByName">
+      <soap:operation soapAction="http://tempuri.org/DownloadClassByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loadallclass">
+      <soap:operation soapAction="http://tempuri.org/loadallclass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMN">
+      <soap:operation soapAction="http://tempuri.org/SelectMN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchclass">
+      <soap:operation soapAction="http://tempuri.org/searchclass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenById">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentLenById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenByName">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentLenByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="kechengbiaoSoap12" type="tns:kechengbiaoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="uploadclass">
+      <soap12:operation soapAction="http://tempuri.org/uploadclass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassById">
+      <soap12:operation soapAction="http://tempuri.org/DownloadClassById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassByName">
+      <soap12:operation soapAction="http://tempuri.org/DownloadClassByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loadallclass">
+      <soap12:operation soapAction="http://tempuri.org/loadallclass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMN">
+      <soap12:operation soapAction="http://tempuri.org/SelectMN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchclass">
+      <soap12:operation soapAction="http://tempuri.org/searchclass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenById">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentLenById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenByName">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentLenByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="kechengbiaoHttpGet" type="tns:kechengbiaoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="uploadclass">
+      <http:operation location="/uploadclass" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassById">
+      <http:operation location="/DownloadClassById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassByName">
+      <http:operation location="/DownloadClassByName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loadallclass">
+      <http:operation location="/loadallclass" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMN">
+      <http:operation location="/SelectMN" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchclass">
+      <http:operation location="/searchclass" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenById">
+      <http:operation location="/GetDocumentLenById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenByName">
+      <http:operation location="/GetDocumentLenByName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="kechengbiaoHttpPost" type="tns:kechengbiaoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="uploadclass">
+      <http:operation location="/uploadclass" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassById">
+      <http:operation location="/DownloadClassById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadClassByName">
+      <http:operation location="/DownloadClassByName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loadallclass">
+      <http:operation location="/loadallclass" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMN">
+      <http:operation location="/SelectMN" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchclass">
+      <http:operation location="/searchclass" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenById">
+      <http:operation location="/GetDocumentLenById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLenByName">
+      <http:operation location="/GetDocumentLenByName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="kechengbiao">
+    <wsdl:port name="kechengbiaoSoap" binding="tns:kechengbiaoSoap">
+      <soap:address location="http://www.songshizhao.com/kechengbiao.asmx" />
+    </wsdl:port>
+    <wsdl:port name="kechengbiaoSoap12" binding="tns:kechengbiaoSoap12">
+      <soap12:address location="http://www.songshizhao.com/kechengbiao.asmx" />
+    </wsdl:port>
+    <wsdl:port name="kechengbiaoHttpGet" binding="tns:kechengbiaoHttpGet">
+      <http:address location="http://www.songshizhao.com/kechengbiao.asmx" />
+    </wsdl:port>
+    <wsdl:port name="kechengbiaoHttpPost" binding="tns:kechengbiaoHttpPost">
+      <http:address location="http://www.songshizhao.com/kechengbiao.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
